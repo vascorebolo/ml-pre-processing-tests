@@ -1,7 +1,14 @@
-## PRE-PROCESSING
+## ML: PRE-PROCESSING
 
 ### Handling Null Values
 
+To install the dependencies for the project you can:
+
+```bash
+pip install -r requirements.txt
+```
+
+It's still a work in progress.
 Using the BostonHousing dataset to make some tests on pre-processing values.
 
 - CRIM - per capita crime rate by town
