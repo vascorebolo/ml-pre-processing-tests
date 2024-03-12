@@ -7,6 +7,12 @@ import tabulate
 def print_line(char = '▀'):
   print(char * 100)
 
+def print_results(method, na_values, df):
+  print_line()
+  print(f'{method}: ({na_values})')
+  print_line()
+  print(df.tail(5))
+
 # loading data
 df = pd.read_csv('BostonHousing.csv')
 y = df['medv'] # get medv column: Median value of owner-occupied homes in $1000's
@@ -29,26 +35,20 @@ na_values = df.isna().sum().sum()
 
 # implementation of methods
 df_1 = df.bfill(axis = 'columns') # replaces with value of the previous row
-print_line()
-print(f'bfill: ({na_values})')
-print_line()
-print(df_1.tail(10))
+print_results('bfill', na_values, df_1)
 
 df_2 = df.ffill(axis = 'columns') # replaces with value of the next row
-print_line()
-print(f'ffill ({na_values})')
-print_line()
-print(df_2.tail(10))
+print_results('ffil', na_values, df_2)
 
 # fillna: Fill NA/NaN values using the specified method.
 df_3 = df.fillna(df.mean()) # replaces with value of the mean of the column
-print_line()
-print(f'fillna(mean): ({na_values})')
-print_line()
-print(df_3.tail(10))
+print_results('fillna(mean)', na_values, df_3)
 
 df_4 = df.fillna(df.median()) # replaces with value of the median of the column
-print_line()
-print(f'fillna(median): ({na_values})')
-print_line()
-print(df_4.tail(10))
+print_results('fillna(median)', na_values, df_4)
+
+df_5 = x
+imputer = KNNImputer()
+imputer.fit_transform(df_5)
+print_results('KNNImputer', na_values, df_5)
+
