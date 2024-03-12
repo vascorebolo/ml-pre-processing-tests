@@ -23,28 +23,32 @@ print(x.shape, y.shape)
 
 # Return a boolean same-sized object indicating if the values are NA.
 # NA values, such as None or numpy.NaN
-
 print_line('_')
-print(df.isna().sum().sum())
+print('NA values:')
+na_values = df.isna().sum().sum()
 
 # implementation of methods
 df_1 = df.bfill(axis = 'columns') # replaces with value of the previous row
 print_line()
-print('bfill')
+print(f'bfill: ({na_values})')
 print_line()
-print(df_1)
+print(df_1.tail(10))
 
 df_2 = df.ffill(axis = 'columns') # replaces with value of the next row
 print_line()
-print('ffill')
+print(f'ffill ({na_values})')
 print_line()
-print(df_2)
+print(df_2.tail(10))
 
 # fillna: Fill NA/NaN values using the specified method.
-# df_3 = df.fillna(df.mean()) # replaces with value of the mean of the column
-# print_line()
-# print(df_3)
+df_3 = df.fillna(df.mean()) # replaces with value of the mean of the column
+print_line()
+print(f'fillna(mean): ({na_values})')
+print_line()
+print(df_3.tail(10))
 
-# df_4 = df.fillna(df.median()) # replaces with value of the median of the column
-# print_line()
-# print(df_4)
+df_4 = df.fillna(df.median()) # replaces with value of the median of the column
+print_line()
+print(f'fillna(median): ({na_values})')
+print_line()
+print(df_4.tail(10))
